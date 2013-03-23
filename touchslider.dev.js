@@ -1,6 +1,6 @@
 /**
- * TouchSlider v1.2.6
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/02/28
+ * TouchSlider v1.2.7
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/03/23
  */
 (function(window, undefined){
 	
@@ -88,7 +88,7 @@
 		}
 
 	TouchSlider.fn=TouchSlider.prototype={
-		version:'1.2.6',
+		version:'1.2.7',
 		//默认配置
 		_default: {
 			'id':'slider', //幻灯容器的id
@@ -347,7 +347,8 @@
 		},
 		_start:function(evt){
 			evt=this.eventHook(evt);
-			if(!this.touching)evt.preventDefault();
+			var name=evt.target.nodeName.toLowerCase();
+			if(!this.touching && (name=='a'||name=='img'))evt.preventDefault();
 			this.removeListener(this.element,'click',returnFalse);
 			this.startPos=[evt.pageX,evt.pageY];
 			this.element.style[toCase(cssVendor+'transition-duration')]='0ms';
@@ -358,13 +359,18 @@
 			if(!this.startPos || evt.scale&&evt.scale!==1)return;
 			evt=this.eventHook(evt);
 			this.stopPos=[evt.pageX,evt.pageY];
-			var direction=sg[this.vertical][1],
+			var range,direction=sg[this.vertical][1],
 				type=sg[this.vertical][0],
 				offset=this.stopPos[this.vertical]-this.startPos[this.vertical];
 			if(this.scrolling || typeof this.scrolling=='undefined'&&Math.abs(offset)>=Math.abs(this.stopPos[1-this.vertical]-this.startPos[1-this.vertical])){
 				evt.preventDefault();
 				offset=offset/((!this.index&&offset>0 || this.index==this.length-1&&offset<0) ? (Math.abs(offset)/this[type]+1) : 1);
 				this.element.style[direction]=this._pos+offset+'px';
+				if(window.getSelection!=null){
+					range=getSelection();
+					if(range.empty)range.empty();
+					else if(range.removeAllRanges)range.removeAllRanges();
+				}
 				if(offset&&typeof this.scrolling=='undefined'){
 					this.scrolling=true;//标记拖动（有效触摸）
 					clearTimeout(this.timer);//暂停幻灯
