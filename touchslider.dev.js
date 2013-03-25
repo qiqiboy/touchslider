@@ -1,6 +1,6 @@
 /**
- * TouchSlider v1.2.7
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/03/23
+ * TouchSlider v1.2.8
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/03/25
  */
 (function(window, undefined){
 	
@@ -88,7 +88,7 @@
 		}
 
 	TouchSlider.fn=TouchSlider.prototype={
-		version:'1.2.7',
+		version:'1.2.8',
 		//默认配置
 		_default: {
 			'id':'slider', //幻灯容器的id
@@ -452,6 +452,26 @@
 				this.cfg.after.call(this, this.index, this.slides[this.index]);
 				this.playing && this.play();
 			}
+		},
+		refresh:function(){
+			this.slides=children(this.element);
+			this.length=this.slides.length;
+			if(this.index>=this.length){
+				this.index=this.length-1;
+			}
+			this.resize();
+		},
+		append:function(elem){
+			this.element.appendChild(elem);
+			this.refresh();
+		},
+		insertBefore:function(elem,target){
+			this.element.insertBefore(elem,target);
+			this.refresh();
+		},
+		remove:function(elem){
+			this.element.removeChild(elem);
+			this.refresh();
 		}
 	}
 
