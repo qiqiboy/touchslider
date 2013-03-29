@@ -1,10 +1,11 @@
 TouchSlider
 ===========
 
-> TouchSlider是一个轻量级的javascript组件，设计的目的是提供一个可以方便实现全平台（PC及移动端触摸界面）的幻灯slider效果。
+> TouchSlider是一个轻量级的javascript组件，设计的目的是提供一个可以方便实现全平台（PC端所及移动端webkit内核触摸界面）的幻灯slider效果。
 
 经过v1及v2的更新升级，目前其使用范围已经不仅仅限于幻灯片制作，更可以很方便的实现网站局部左右切换，通过提供的操作接口（.append(), .remove()），可以很方便的随时添加页面或者删除页面，实现在平台上的页面滑动。
 示例见demo页面的第二个示例。
+TouchSlider支持所有的浏览器，包括IE6、IE7等。PC上也支持鼠标模拟拖拽切换幻灯。
 
 ## 默认参数说明
 ```javascript
