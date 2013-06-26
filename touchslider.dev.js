@@ -88,7 +88,7 @@
 		}
 
 	TouchSlider.fn=TouchSlider.prototype={
-		version:'1.2.8',
+		version:'1.2.9',
 		//默认配置
 		_default: {
 			'id':'slider', //幻灯容器的id
