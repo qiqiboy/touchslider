@@ -33,9 +33,10 @@ slider.play();//开始播放
 slider.prev();//上一张
 slider.next();//下一张
 slider.stop();//停止播放（暂停并回到第一张）
-slider.append(elem);//末尾添加一个幻灯项，参考下边第二个幻灯示例
-slider.remove(elem);//删除一个幻灯项，slider.remove(slider.slides[0])
-slider.insertBefore(elem,target);//在target前插入一个幻灯项
+slider.append(newLi);//末尾添加一个幻灯项，参考下边第二个幻灯示例
+slider.prepend(newLi);//开头添加一个幻灯项
+slider.remove(index);//删除第index个幻灯，slider.remove(1)
+slider.insertBefore(newLi,index);//在第index幻灯前插入一个幻灯项
 </pre>
 <br/><br/>
 <font color="red">一些例子</font>：
@@ -79,7 +80,7 @@ slider.insertBefore(elem,target);//在target前插入一个幻灯项
 <button onclick="t11.prev();">上一张</button>
 <button onclick="t11.next();">下一张</button>
 <button style="background:red;color:#fff;" onclick="var li=document.createElement('li');li.innerHTML='<div>'+(t11.slides.length+1)+'</div>';t11.append(li);">增加</button>
-<button style="background:red;color:#fff;" onclick="t11.remove(t11.slides[0]);">删除</button>
+<button style="background:red;color:#fff;" onclick="t11.remove(0);">删除</button>
 
 <h2>250px-width 类型：容器宽度250px，固定宽度幻灯，方向向上滚动 <br/>
 调用方式：new TouchSlider('slider2',{'auto':false, begin:1, speed:600, timeout:3000, direction:'up'})</h2>

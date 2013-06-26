@@ -1,6 +1,6 @@
 /**
- * TouchSlider v1.2.8
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/03/25
+ * TouchSlider v1.2.9
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/06/26
  */
 (function(window, undefined){
 	
@@ -259,7 +259,7 @@
 			css={position:'relative',overflow:'hidden'};
 			css[cssVendor+'transition-duration']='0ms';
 			css[type]=this.total+'px';
-			css[sg[this.vertical][1]]=this.getPos(type,this.index)+'px';
+			css[sg[this.vertical][1]]=this.length?this.getPos(type,this.index)+'px':0;
 			this.css(this.element,css);
 			this.css(this.container,{'visibility':'visible'});
 			this.playing && this.play();
@@ -454,23 +454,34 @@
 			}
 		},
 		refresh:function(){
-			this.slides=children(this.element);
-			this.length=this.slides.length;
-			if(this.index>=this.length){
-				this.index=this.length-1;
+			if(this.direction==null){
+				this.setup();
+			}else{
+				this.slides=children(this.element);
+				this.length=this.slides.length;
+				this.index=Math.max(Math.min(this.length-1,this.index),0);
+				this.resize();
 			}
-			this.resize();
 		},
 		append:function(elem){
 			this.element.appendChild(elem);
 			this.refresh();
 		},
-		insertBefore:function(elem,target){
-			this.element.insertBefore(elem,target);
+		prepend:function(elem){
+			this.length?this.insertBefore(elem,0):this.append(elem);
+		},
+		insertBefore:function(elem,index){
+			this.element.insertBefore(elem,this.slides[index]);
+			if(this.index>=index){
+				this.index++;
+			}
 			this.refresh();
 		},
-		remove:function(elem){
-			this.element.removeChild(elem);
+		remove:function(index){
+			this.element.removeChild(this.slides[index]);
+			if(this.index>=index){
+				this.index--;
+			}
 			this.refresh();
 		}
 	}
