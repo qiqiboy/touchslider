@@ -32,9 +32,10 @@ slider.play();//开始播放
 slider.prev();//上一张
 slider.next();//下一张
 slider.stop();//停止播放（暂停并回到第一张）
-slider.append(elem);//末尾添加一个幻灯项，参考下边第二个幻灯示例
-slider.remove(elem);//删除一个幻灯项，slider.remove(slider.slides[0])
-slider.insertBefore(elem,target);//在target前插入一个幻灯项
+slider.append(newLi);//末尾添加一个幻灯项，参考下边第二个幻灯示例
+slider.prepend(newLi);//开头添加一个幻灯项
+slider.remove(index);//删除第index个幻灯，slider.remove(1)
+slider.insertBefore(newLi,index);//在第index幻灯前插入一个幻灯
 ````
 
 ## demo地址
