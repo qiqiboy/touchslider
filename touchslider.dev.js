@@ -1,5 +1,5 @@
 /**
- * TouchSlider v1.3.0
+ * TouchSlider v1.3.1
  * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/07/26
  */
 (function(window, undefined){
@@ -62,9 +62,6 @@
 			evt=TouchSlider.fn.eventHook(evt);
 			evt.preventDefault();
 		},
-		startEvent=hasTouch ? "touchstart" : "mousedown",
-		moveEvent=hasTouch ? "touchmove" : "mousemove",
-		endEvent=hasTouch ? "touchend" : "mouseup",
 		transitionend=testVendor[1]||'',
 		
 		TouchSlider=function(id,cfg){
@@ -88,7 +85,7 @@
 		}
 
 	TouchSlider.fn=TouchSlider.prototype={
-		version:'1.3.0',
+		version:'1.3.1',
 		//默认配置
 		_default: {
 			'id':'slider', //幻灯容器的id
@@ -100,6 +97,7 @@
 			'align':'center',
 			'fixWidth':true,
 			'mouseWheel':false,
+			'mouseDrag':true,
 			'before':new Function,
 			'after':new Function
 		},
@@ -180,7 +178,12 @@
 			}
 		},
 		//初始化
-		setup: function(){
+		setup:function(){
+			var hasTouch=hasTouch||!this.cfg.mouseDrag,
+				startEvent=hasTouch ? "touchstart" : "mousedown",
+				moveEvent=hasTouch ? "touchmove" : "mousemove",
+				endEvent=hasTouch ? "touchend" : "mouseup";
+			
 			this.slides=children(this.element);
 			this.length=this.slides.length;
 			this.cfg.timeout=parseInt(this.cfg.timeout);
