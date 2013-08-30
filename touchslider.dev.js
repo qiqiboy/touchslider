@@ -1,6 +1,6 @@
 /**
  * TouchSlider v1.3.1
- * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/07/26
+ * By qiqiboy, http://www.qiqiboy.com, http://weibo.com/qiqiboy, 2013/08/30
  */
 (function(window, undefined){
 	
@@ -179,10 +179,10 @@
 		},
 		//初始化
 		setup:function(){
-			var hasTouch=hasTouch||!this.cfg.mouseDrag,
-				startEvent=hasTouch ? "touchstart" : "mousedown",
-				moveEvent=hasTouch ? "touchmove" : "mousemove",
-				endEvent=hasTouch ? "touchend" : "mouseup";
+			var Touch=hasTouch||!this.cfg.mouseDrag,
+				startEvent=Touch ? "touchstart" : "mousedown",
+				moveEvent=Touch ? "touchmove" : "mousemove",
+				endEvent=Touch ? "touchend" : "mouseup";
 			
 			this.slides=children(this.element);
 			this.length=this.slides.length;
