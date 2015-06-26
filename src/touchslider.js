@@ -385,7 +385,7 @@
             css[transition]='none';
             css[type]=this.total+'px';
             css[this.direction?'top':'left']=this.getPos(this.current)+'px';
-
+            cancelFrame(this.timer);
             setStyle(this.container,css);
 
             return this;
