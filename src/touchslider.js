@@ -563,7 +563,7 @@
                                 ev.preventDefault();
                             }
 
-                            if(curPos!=tarPos){console.log(offset,index)
+                            if(curPos!=tarPos){
                                 this.slide(index);
                             }
                         }
