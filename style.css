@@ -35,9 +35,13 @@ a {
 }
 .swipe {
   margin-bottom:20px;
+  overflow:hidden;
+  position:relative;
+}
+.swipe ul{
+    overflow:hidden;
 }
 .swipe li div, .swipe div div div {
-  margin:0 10px;
   padding:50px 10px;
   background:#1db1ff;
   font-weight:bold;
@@ -48,7 +52,7 @@ a {
 .swipe li  img{
 	max-width:80%;
 }
-#slider li div{
+.swipe li{
 	margin:10px;
 }
 #slider4{
@@ -81,7 +85,7 @@ a {
 }
 #slider li:first-child{
 	width:100px;
-	margin:0 40px;
+	margin:10px 40px;
 }
 #slider li:last-child{
 	width:500px;

@@ -10,45 +10,12 @@
 <body>
 
 <h1>TouchSlider</h1>
-<div id="ts" style="overflow:auto;">
-<h2>默认参数说明
-<pre>
-_default: {
-    'id': 'slider', //string|elementNode 幻灯容器的id或者该节点对象
-    'begin': 0, //Number 默认从第几个幻灯开始播放，从0开始
-    'auto': true, //bool 是否自动播放
-    'speed':600, //Number 动画效果持续时间,单位是毫秒
-    'timeout':5000, //Number 幻灯播放间隔时间,单位毫秒
-    'direction':'left', //string left|right|up|down 播放方向,四个值可选
-    'align':'center', //string left|center|right 对齐方向（fixWidth=true情况下无效），靠左对齐（ipad版appStore上截图展现方式）、居中对齐（iphone版appStore上截图展现方式）、靠右对齐
-    'fixWidth':true, //bool 默认会将每个幻灯宽度强制固定为容器的宽度,即每次只能看到一张幻灯；false的情况参见下方第一个例子
-    'mouseWheel':false, //bool 是否支持鼠标滚轮
-    'mouseDrag':true, //bool 是否支持鼠标拖拽切换
-    'before':new Function(), //Function 幻灯切换前, before(newIndex, oldSlide)
-    'after':new Function() //Function 幻灯切换后, after(newIndex, newSlide)
-}
 
-var slider=new TouchSlider();
-slider.pause();//暂停播放
-slider.play();//开始播放
-slider.prev();//上一张
-slider.next();//下一张
-slider.stop();//停止播放（暂停并回到第一张）
-slider.append(newLi);//末尾添加一个幻灯项，参考下边第二个幻灯示例
-slider.prepend(newLi);//开头添加一个幻灯项
-slider.remove(index);//删除第index个幻灯，slider.remove(1)
-slider.insertBefore(newLi,index);//在第index幻灯前插入一个幻灯项
-</pre>
-<br/><br/>
-<font color="red">一些例子</font>：
-<br/>
-</h2>
-</div>
 
 <h2>full-width 类型：容器宽度自适应，幻灯宽度不固定，居中对齐（iphone版appStore上截图展现方式） <br/>
-调用方式：new TouchSlider('slider',{speed:600, timeout:3000, direction:'left', mouseDrag:false, <font color="red">fixWidth:false</font>})</h2>
+调用方式：new TouchSlider('slider',{duration:800, interval:3000, direction:0, autoplay:true, align:'center', mousewheel:false, mouse:true, <font color="red">fullsize:false</font>});</h2>
 
-<div class='swipe' style='padding:10px;'>
+<div class='swipe' style='margin:10px;'>
   <ul id='slider'>
     <li style='display:block'><div>1</div></li>
     <li><div>2</div></li>
@@ -64,9 +31,9 @@ slider.insertBefore(newLi,index);//在第index幻灯前插入一个幻灯项
 <button onclick="t1.next();">下一张</button>
 
 <h2>full-width 类型：容器宽度自适应，幻灯宽度不固定，靠左对齐（ipad版appStore上截图展现方式） <br/>
-调用方式：new TouchSlider('slider',{speed:600, timeout:3000, direction:'left', <font color="red">align:'left'</font>, <font color="red">fixWidth:false</font>})</h2>
+调用方式：new TouchSlider('slider',{duration:800, interval:3000, direction:0, autoplay:true, <font color="red">align:'left'</font>, mousewheel:false, mouse:true, <font color="red">fullsize:false</font>});</h2>
 
-<div class='swipe' style='padding:10px;'>
+<div class='swipe' style='margin:10px;'>
   <ul id='slider1'>
     <li style='display:block'><div>1</div></li>
     <li><div>2</div></li>
@@ -80,13 +47,13 @@ slider.insertBefore(newLi,index);//在第index幻灯前插入一个幻灯项
 <button onclick="t11.play();">播放</button>
 <button onclick="t11.prev();">上一张</button>
 <button onclick="t11.next();">下一张</button>
-<button style="background:red;color:#fff;" onclick="var li=document.createElement('li');li.innerHTML='<div>'+(t11.slides.length+1)+'</div>';t11.append(li);">增加</button>
+<button style="background:red;color:#fff;" onclick="var li=document.createElement('li');li.innerHTML='<div>'+(t11.pages.length+1)+'</div>';t11.append(li);">增加</button>
 <button style="background:red;color:#fff;" onclick="t11.remove(0);">删除</button>
 
 <h2>250px-width 类型：容器宽度250px，固定宽度幻灯，方向向上滚动 <br/>
-调用方式：new TouchSlider('slider2',{'auto':false, begin:1, speed:600, timeout:3000, direction:'up'})</h2>
+调用方式：new TouchSlider('slider2',{duration:600, interval:3000,  <font color="red">direction:1</font>, autoplay:true, align:'middle', mousewheel:false, mouse:true, fullsize:true});</h2>
 
-<div class='swipe' style='height:145px;width:250px'>
+<div class='swipe' style='height:143px;width:250px'>
   <ul id='slider2'>
     <li class="a" style='display:block'><div>1</div></li>
     <li class="a" style='display:none'><div>2</div></li>
@@ -166,15 +133,15 @@ for(var i=0;i<as.length;i++){
 		}
 	})();
 }
-var t1=new TouchSlider('slider',{speed:600, timeout:3000, direction:'left', mouseDrag:false,fixWidth:false});
-var t11=new TouchSlider('slider1',{speed:600, timeout:3000, direction:'left', align:'left', fixWidth:false});
-var t2=new TouchSlider('slider2',{'auto':false, begin:1, speed:600, timeout:3000, direction:'up'});
-var t3=new TouchSlider('slider3',{speed:600, timeout:3000, mouseWheel:true});
-var t4=new TouchSlider({id:'slider4', speed:600, timeout:6000, before:function(index){
-		as[active].className='';
-		active=index;
-		as[active].className='active';
-	}});
+var t1=new TouchSlider('slider',{duration:800, interval:3000, direction:0, autoplay:true, align:'center', mousewheel:false, mouse:true, fullsize:false});
+var t11=new TouchSlider('slider1',{duration:800, interval:3000, direction:0, autoplay:true, align:'left', mousewheel:false, mouse:true, fullsize:false});
+var t2=new TouchSlider('slider2',{duration:600, interval:3000, direction:1, autoplay:true, align:'middle', mousewheel:false, mouse:true, fullsize:true});
+var t3=new TouchSlider('slider3',{duration:1000, direction:0, interval:3000, fullsize:true});
+var t4=new TouchSlider('slider4',{speed:1000, direction:0, interval:6000, fullsize:true});
+t4.on('before',function(m,n){
+    as[m].className='';
+	as[n].className='active';
+})
 </script>
 
 </body> 
