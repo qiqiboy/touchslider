@@ -342,12 +342,10 @@
             this.pageData.container=this.container.style.cssText||'';
 
             this.on({
-                before:function(){clearTimeout(self.playTimer);},
-                dragStart:function(){clearTimeout(self.playTimer);removeRange();},
-                after:function(){
-                    self.firePlay();
-                }
-            }).fire('after');
+                before:function(){clearTimeout(this.playTimer);},
+                dragStart:function(){clearTimeout(this.playTimer);removeRange();},
+                after:this.firePlay
+            }).firePlay();
 
             this.comment=document.createComment(' Powered by pageSwitch v'+this.version+'  https://github.com/qiqiboy/pageSwitch ');
             this.container.appendChild(this.comment);
@@ -422,7 +420,7 @@
             return this.slide((this.current-1+this.length)%this.length);
         },
         next:function(){
-            return this.slide((this.current+1+this.length)%this.length);
+            return this.slide((this.current+1)%this.length);
         },
         play:function(){
             this.playing=true;

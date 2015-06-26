@@ -4,7 +4,7 @@ TouchSlider
 pageSwitch.js适用场景为全屏切换，即一切一屏，并且在此基础上实现了超过一百种切换效果。而TouchSlider.js则侧重于在滑动效果下，不仅支持全屏切换，还支持不固定尺寸的幻灯切换。  
 具体使用请参看各组件所提供的示例。
 
-TouchSlider支持所有的浏览器，包括IE6、IE7等。PC上也支持鼠标模拟拖拽切换幻灯。
+Tips: v2版为重构版，提高了代码质量，也优化了性能。参数格式有所调整，如果是由旧版本更新，则注意修改调用的参数。
 
 ## 如何使用
 ```javascript
@@ -52,6 +52,9 @@ ts.destroy();				//销毁TouchSlider效果对象
  */
 ts.on(event,callback);
 ````
+
+## 兼容性
+兼容全平台，包括IE6+
 
 ## demo地址
 请点击http://u.boy.im/touchslider/
