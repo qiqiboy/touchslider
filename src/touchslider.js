@@ -6,7 +6,7 @@
 ;
 (function(ROOT, struct, undefined){
 
-	"use strict";
+    "use strict";
 
     var VERSION='2.0';
     var lastTime=0,
