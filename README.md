@@ -1,9 +1,8 @@
 TouchSlider
 ===========
-> #### 与 pageSwitch 的区别
-> rger
-
-> TouchSlider是一个轻量级的javascript组件，设计的目的是提供一个可以方便实现全平台（PC端所及移动端webkit内核触摸界面）的幻灯slider效果。
+> **与 [pageSwitch.js](https://github.com/qiqiboy/pageSwitch) 的区别**  
+pageSwitch.js适用场景为全屏切换，即一切一屏，并且在此基础上实现了超过一百种切换效果。而TouchSlider.js则侧重于在滑动效果下，不仅支持全屏切换，还支持不固定尺寸的幻灯切换。  
+具体使用请参看各组件所提供的示例。
 
 TouchSlider支持所有的浏览器，包括IE6、IE7等。PC上也支持鼠标模拟拖拽切换幻灯。
 
