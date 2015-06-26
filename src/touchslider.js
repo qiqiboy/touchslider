@@ -550,7 +550,7 @@
                             if(isDrag){
                                 sub=offset>0?1:-1;
                                 if(Math.abs(offset)>20){
-                                    while(Math.abs(tarPos-curPos)>this.getOuterSize(this.pages[index])/2&&this.pages[index-sub]){
+                                    while(sub*(curPos-tarPos)>this.getOuterSize(this.pages[index])/2&&this.pages[index-sub]){
                                         tarPos=this.getPos(index-=sub);
                                     }
 
@@ -563,7 +563,7 @@
                                 ev.preventDefault();
                             }
 
-                            if(curPos!=tarPos){
+                            if(curPos!=tarPos){console.log(offset,index)
                                 this.slide(index);
                             }
                         }
