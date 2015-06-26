@@ -362,7 +362,7 @@
 
             css={
                 float:'left',
-                display:'block'
+                display:'inline'
             }
             each(this.pages,function(page){
                 if(self.fullsize){
@@ -385,6 +385,7 @@
             css[transition]='none';
             css[type]=this.total+'px';
             css[this.direction?'top':'left']=this.getPos(this.current)+'px';
+
             setStyle(this.container,css);
 
             return this;
@@ -631,6 +632,7 @@
             var type=this.direction?'Top':'Left',
                 myWidth=this.getOuterSize(this.pages[index],true),
                 sum=this.getSum(0,index)+this['getMargin'+type+'Size'](this.container)+this['getBorder'+type+'Size'](this.container);
+
             switch(this.align){
                 case 'top':
                 case 'left':
@@ -649,7 +651,7 @@
             return this.getOuterSize(elem)-this.getBorderSize(elem);
         },
         getSize:function(elem){
-            return elem[this.direction?'clientHeight':'clientWidth']-this.getPaddingSize(elem);
+            return elem[this.direction?'offsetHeight':'offsetWidth']-this.getPaddingSize(elem)-this.getBorderSize(elem);
         },
         destroy:function(){
             var pageData=this.pageData;
@@ -704,10 +706,10 @@
 
 
     each("margin padding border".split(" "),function(type){
-        each("-top -left -right -bottom".split(" "),function(dir){
+        each("Top Left Right Bottom".split(" "),function(dir){
             var prop=type+dir;
             struct.prototype[camelCase('get-'+prop)+'Size']=function(elem){
-                return parseFloat(getStyle(elem,prop+(type=='border'?'-width':'')))||0;
+                return parseFloat(getStyle(elem,prop+(type=='border'?'Width':'')))||0;
             }
         });
         struct.prototype[camelCase('get-'+type)+'Size']=function(elem){
