@@ -549,14 +549,12 @@
 
                             if(isDrag){
                                 sub=offset>0?1:-1;
-                                if(Math.abs(offset)>20){
-                                    while(sub*(curPos-tarPos)>this.getOuterSize(this.pages[index])/2&&this.pages[index-sub]){
-                                        tarPos=this.getPos(index-=sub);
-                                    }
+                                while(sub*(curPos-tarPos)>this.getOuterSize(this.pages[index])/2&&this.pages[index-sub]){
+                                    tarPos=this.getPos(index-=sub);
+                                }
 
-                                    if(index==this.current&&+new Date-tm<500){
-                                        index-=sub;
-                                    }
+                                if(Math.abs(offset)>20&&+new Date-tm<500){
+                                    index-=sub;
                                 }
                                 
                                 this.fire('dragEnd',ev);
