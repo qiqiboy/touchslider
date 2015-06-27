@@ -253,6 +253,10 @@
         return -c * ((t=t/d-1)*t*t*t - 1) + b;
     }
 
+    function contains(target,parentNode){
+        return  target==parentNode||parentNode.contains?parentNode.contains(target):!!(parentNode.compareDocumentPosition&&compareDocumentPosition(target)&16);
+    }
+
     function filterEvent(oldEvent){
         var ev={},
             which=oldEvent.which,
@@ -513,8 +517,9 @@
                     break;
 
                 case 1:
+                    this.start=true;
                 case 3:
-                    if(canDrag){
+                    if(canDrag&&this.start){
                         var self=this,
                             index=this.current,
                             type=this.direction?'top':'left',
@@ -544,7 +549,7 @@
                             curPos=this.startPos+offset;
                             tarPos=this.getPos(index);
 
-                            each("rect drag time startPos _offset".split(" "),function(prop){
+                            each("start rect drag time startPos _offset".split(" "),function(prop){
                                 delete self[prop];
                             });
 
