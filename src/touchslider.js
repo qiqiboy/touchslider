@@ -514,7 +514,6 @@
 
                 case 1:
                     if(canDrag&&!this.pointerType){
-                        clearTimeout(this.eventTimer);
                         this.pointerType=ev.eventType;
                     }
                 case 3:
@@ -525,6 +524,7 @@
                             isDrag,offset,tm,nn,sub,curPos,tarPos,myWidth;
                         if(ev.length){
                             nn=ev.target.nodeName.toLowerCase();
+                            clearTimeout(this.eventTimer);
                             this.startPos=parseFloat(getStyle(this.container,type))||0;
                             if(transition){
                                 this.container.style[transition]='none';
