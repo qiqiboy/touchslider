@@ -369,9 +369,7 @@
                     css[type]=self.size-self.getMarginSize(page)-self.getPaddingSize(page)-self.getBorderSize(page)+'px';
                 }
                 if(type=='height'){
-                    self.direction=0;
-                    css['width']=self.getSize(self.container)-self.getMarginSize(page)-self.getPaddingSize(page)-self.getBorderSize(page)+'px';
-                    self.direction=1;
+                    css['clear']='both';
                 }
                 setStyle(page,css);
             });

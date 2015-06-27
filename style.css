@@ -56,6 +56,9 @@ a {
 .swipe li{
 	margin:10px;
 }
+#slider2 li{
+    width:230px;
+}
 #slider4{
 	line-height:0;
 	text-align:center;
