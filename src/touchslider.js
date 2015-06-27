@@ -253,10 +253,6 @@
         return -c * ((t=t/d-1)*t*t*t - 1) + b;
     }
 
-    function contains(target,parentNode){
-        return  target==parentNode||parentNode.contains?parentNode.contains(target):!!(parentNode.compareDocumentPosition&&compareDocumentPosition(target)&16);
-    }
-
     function filterEvent(oldEvent){
         var ev={},
             which=oldEvent.which,
