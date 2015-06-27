@@ -514,6 +514,7 @@
 
                 case 1:
                     if(canDrag&&!this.pointerType){
+                        clearTimeout(this.eventTimer);
                         this.pointerType=ev.eventType;
                     }
                 case 3:
@@ -543,7 +544,7 @@
                             curPos=this.startPos+offset;
                             tarPos=this.getPos(index);
 
-                            each("rect drag time startPos _offset pointerType".split(" "),function(prop){
+                            each("rect drag time startPos _offset".split(" "),function(prop){
                                 delete self[prop];
                             });
 
@@ -564,6 +565,10 @@
                             if(curPos!=tarPos){
                                 this.slide(index);
                             }
+
+                            this.eventTimer=setTimeout(function(){
+                                delete self.pointerType;
+                            },30);
                         }
                     }
                     break;
