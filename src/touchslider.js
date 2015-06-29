@@ -386,7 +386,9 @@
             cancelFrame(this.timer);
             setStyle(this.container,css);
 
-            return this;
+            clearTimeout(this.playTimer);
+
+            return this.firePlay();
         },
         on:function(ev,callback){
             var self=this;
@@ -562,6 +564,8 @@
 
                             if(curPos!=tarPos){
                                 this.slide(index);
+                            }else if(isDrag){
+                                this.firePlay();
                             }
 
                             this.eventTimer=setTimeout(function(){
