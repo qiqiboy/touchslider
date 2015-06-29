@@ -347,7 +347,7 @@
                 after:this.firePlay
             }).firePlay();
 
-            this.comment=document.createComment(' Powered by pageSwitch v'+this.version+'  https://github.com/qiqiboy/pageSwitch ');
+            this.comment=document.createComment(' Powered by TouchSlider v'+this.version+'  https://github.com/qiqiboy/touchslider ');
             this.container.appendChild(this.comment);
 
             this.resize();
