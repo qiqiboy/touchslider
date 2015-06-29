@@ -8,7 +8,7 @@
 
     "use strict";
 
-    var VERSION='2.0';
+    var VERSION='2.0.1';
     var lastTime=0,
         nextFrame=ROOT.requestAnimationFrame            ||
                 ROOT.webkitRequestAnimationFrame        ||
@@ -484,11 +484,11 @@
         },
         handleEvent:function(oldEvent){
             var ev=filterEvent(oldEvent),
-                canDrag=ev.button<1&&(!this.pointerType||this.pointerType==ev.eventType)&&(this.mouse||ev.pointerType!='mouse');
+                canDrag=ev.button<1&&ev.length<2&&(!this.pointerType||this.pointerType==ev.eventType)&&(this.mouse||ev.pointerType!='mouse');
 
             switch(ev.eventCode){
                 case 2:
-                    if(canDrag&&ev.length<2&&this.rect){
+                    if(canDrag&&this.rect){
                         var index=this.current,
                             dir=this.direction,
                             rect=[ev.clientX,ev.clientY],
@@ -511,16 +511,13 @@
                     break;
 
                 case 1:
-                    if(canDrag){
-                        this.start=true;
-                    }
                 case 3:
-                    if(canDrag&&ev.length<2&&this.start){
+                    if(canDrag){
                         var self=this,
                             index=this.current,
                             type=this.direction?'top':'left',
                             isDrag,offset,tm,nn,sub,curPos,tarPos,myWidth;
-                        if(ev.length){
+                        if(ev.length&&(ev.eventCode==1||this.drag)){
                             nn=ev.target.nodeName.toLowerCase();
                             clearTimeout(this.eventTimer);
                             if(!this.pointerType){
@@ -545,7 +542,7 @@
                             curPos=this.startPos+offset;
                             tarPos=this.getPos(index);
 
-                            each("start rect drag time startPos _offset".split(" "),function(prop){
+                            each("rect drag time startPos _offset".split(" "),function(prop){
                                 delete self[prop];
                             });
 
