@@ -722,7 +722,11 @@
         }
     });
 
-    ROOT.TouchSlider=struct;
+    if(typeof define=='function' && define.amd){
+        define('TouchSlider',function(){
+            return struct;
+        });
+    }else ROOT.TouchSlider=struct;
 
 })(window, function(wrap,config){
     if(!(this instanceof arguments.callee)){
