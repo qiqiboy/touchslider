@@ -722,7 +722,9 @@
         }
     });
 
-    if(typeof define=='function' && define.amd){
+    if(typeof exports === 'object') {
+        module.exports = struct;
+    } else if(typeof define=='function' && define.amd){
         define('TouchSlider',function(){
             return struct;
         });

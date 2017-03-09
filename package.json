@@ -1,0 +1,23 @@
+{
+  "name": "touchslider",
+  "version": "2.0.1",
+  "description": "slider init",
+  "main": "src/touchslider.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://qiqiboy@github.com/qiqiboy/touchslider.git"
+  },
+  "keywords": [
+    "slider",
+    "javascript-library"
+  ],
+  "author": "qiqiboy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qiqiboy/touchslider/issues"
+  },
+  "homepage": "https://github.com/qiqiboy/touchslider#readme"
+}
