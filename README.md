@@ -16,12 +16,16 @@ Tips: v2版为重构版，提高了代码质量，也优化了性能。参数格
     touch-action: pan-x; //纵向滑动时
 }
 ```
+##安装
 
+    npm install touchslider
 
 ## 如何使用
 ```javascript
-// 首先在页面中引入touchslider.js
-// 调用 TouchSlider 方法
+// 如果使用webpack或者requirejs或者browserify等构建工具，可以这样：
+var TouchSlider = require('touchslider');
+
+// 也可以直接在下载本文件，直接在页面中引入
 
 var ts=new TouchSlider('container id',{
 	duration:600,			//int 页面过渡时间
