@@ -73,4 +73,4 @@ ts.on(event,callback);
 兼容全平台，包括IE6+
 
 ## demo地址
-请点击http://u.boy.im/touchslider/
+请点击http://github.boy.im/touchslider/index.html
