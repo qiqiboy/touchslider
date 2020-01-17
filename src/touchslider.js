@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * TouchSlider
  * @author qiqiboy
@@ -94,7 +95,18 @@
             touch:{},
             pointer:{},
             mouse:{}
-        };
+        },
+        // Test via a getter in the options object to see if the passive property is accessed
+        supportsPassive = false;
+
+    try {
+        var opts = Object.defineProperty({}, 'passive', {
+            get: function() {
+                supportsPassive = true;
+            }
+        });
+        window.addEventListener("testPassive", null, opts);
+    } catch (e) {}
 
     each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(name){
         class2type["[object "+name+"]"]=name.toLowerCase();
@@ -104,11 +116,11 @@
         if(obj==null){
             return obj+"";
         }
-        
+
         return typeof obj=='object'||typeof obj=='function' ? class2type[toString.call(obj)]||"object" :
             typeof obj;
     }
-	
+
     function isArrayLike(elem){
         var tp=type(elem);
         return !!elem && tp!='function' && tp!='string' && (elem.length===0 || elem.length && (elem.nodeType==1 || (elem.length-1) in elem));
@@ -156,7 +168,7 @@
             }
         }.call(obj,n);
     }
-    
+
     function each(arr, iterate){
         if(isArrayLike(arr)){
             if(type(arr.forEach)=='function'){
@@ -216,7 +228,9 @@
         }
         each(evstr.split(" "),function(ev){
             if(elem.addEventListener){
-                elem.addEventListener(ev,handler,false);
+                elem.addEventListener(ev,handler,supportsPassive ? {
+                    passive: false
+                } : false);
             }else if(elem.attachEvent){
                 elem.attachEvent('on'+ev,handler);
             }else elem['on'+ev]=handler;
@@ -264,7 +278,7 @@
         });
 
         ev.oldEvent=oldEvent;
-        
+
         ev.type=oldEvent.type.toLowerCase();
         ev.eventType=event2type[ev.type]||ev.type;
         ev.eventCode=event2code[ev.type]||0;
@@ -296,7 +310,7 @@
                 ev.clientX=pointer.clientX;
                 ev.clientY=pointer.clientY;
             }
-            
+
             ev.button=which<4?Math.max(0,which-1):button&4&&1||button&2; // left:0 middle:1 right:2
             ev.length=pointerLength(pointers);
         }
@@ -333,7 +347,7 @@
             addListener(this.container,STARTEVENT.join(" ")+" click"+(this.mousewheel?" mousewheel DOMMouseScroll":""),handler);
             addListener(DOC,MOVEEVENT.join(" ")+(this.arrowkey?" keydown":""),handler);
             addListener(ROOT,'resize',handler);
-            
+
             each(this.pages,function(page){
                 self.pageData.push({
                     cssText:page.style.cssText||''
@@ -375,7 +389,7 @@
             });
 
             this.total=this.getSum(0,this.length);
-            
+
             css={};
             if(pst=='static'){
                 css={position:'relative'};
@@ -452,7 +466,7 @@
                 curPos=parseFloat(getStyle(this.container,dir?'top':'left'))||0,
                 type=dir?'top':'left',
                 css={},tarPos;
-        
+
             tarPos=this.getPos(index);
             duration*=Math.min(1,Math.abs(tarPos-curPos)/curSize)||10;
             this.current=index;
@@ -557,7 +571,7 @@
                                 if(Math.abs(offset)>20&&+new Date-tm<500){
                                     index-=sub;
                                 }
-                                
+
                                 this.fire('dragEnd',ev);
                                 ev.preventDefault();
                             }
@@ -631,7 +645,7 @@
             while(from<to){
                 sum+=this.getOuterSize(this.pages[from++],true);
             }
-            return sum;   
+            return sum;
         },
         getPos:function(index){
             var type=this.direction?'Top':'Left',
@@ -672,7 +686,7 @@
             this.container.style.cssText=pageData.container;
             this.container.removeChild(this.comment);
             this.length=0;
-            
+
             return this.pause();
         },
         refresh:function(){

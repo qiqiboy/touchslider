@@ -1,11 +1,12 @@
 {
   "name": "touchslider",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "slider init",
   "main": "src/touchslider.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "eslintrc": {},
   "repository": {
     "type": "git",
     "url": "git+https://qiqiboy@github.com/qiqiboy/touchslider.git"
