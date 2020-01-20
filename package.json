@@ -1,6 +1,6 @@
 {
   "name": "touchslider",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "slider init",
   "main": "src/touchslider.js",
   "scripts": {
@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/qiqiboy/touchslider/issues"
   },
-  "homepage": "https://github.com/qiqiboy/touchslider#readme"
+  "homepage": "https://github.com/qiqiboy/touchslider#readme",
+  "types": "index.d.ts"
 }
