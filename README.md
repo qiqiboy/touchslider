@@ -18,7 +18,7 @@ Tips: v2 版为重构版，提高了代码质量，也优化了性能。参数�
 }
 ```
 
-##安装
+## 安装
 
     npm install touchslider
 
