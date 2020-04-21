@@ -9,6 +9,8 @@
 
     "use strict";
 
+    if (typeof window === 'undefined') { return }
+
     var VERSION='2.0.1';
     var lastTime=0,
         nextFrame=ROOT.requestAnimationFrame            ||
